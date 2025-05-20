@@ -1,8 +1,8 @@
 class Solution {
 public:
-    bool is_increasing(std::vector<int>& nums) {
-        for (int i = 0; i < nums.size() - 1; i++) {
-            if (nums[i] > nums[i + 1]) {
+    bool is_increasing(std::vector<int>& nums, int start, int end) {
+        for (int i = start; i < end - 1; i++) {
+            if (i + 1 < end && nums[i] > nums[i + 1]) {
                 return false;
             }
         }
@@ -12,18 +12,12 @@ public:
         if (nums.size() < 2) {
             return true;
         }
-        std::vector<int> temp;
         for (int i = 0; i < nums.size() - 1; i++) {
             if (nums[i] > nums[i + 1]) {
-                for (int j = i + 1; j < nums.size(); j++) {
-                    temp.push_back(nums[j]);
-                }
-
-                for (int j = 0; j <= i; j++) {
-                    temp.push_back(nums[j]);
-                }
-
-                if (is_increasing(temp)) {
+                const bool c1 = is_increasing(nums, i + 1, nums.size());
+                const bool c2 = is_increasing(nums, 0, i + 1);
+                
+                if (c1 && c2 && nums[nums.size() - 1] <= nums[0]) {
                     return true;
                 } else {
                     return false;
