@@ -2,6 +2,8 @@
  * @param {string} s
  * @return {number}
  */
+// .charCodeAt(0) gives the ascii value of the character
+// Ref: https://www.youtube.com/watch?v=-zSxTJkcdAo
 var lengthOfLongestSubstring = function (s) {
   let l = 0,
     r = 0,
